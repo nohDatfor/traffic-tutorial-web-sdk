@@ -1,13 +1,8 @@
-
-/*Código Original
-var apiKey = "54TfTRUaw3CRZsraCfw2SI8vPrj2VyX6";
-var centerCoords = [4.89218, 52.37187];
-*/
-/*Código para Aviator*/
 var apiKey = "sG1AXGg2PrKb2ZQPkc16sPLAsSg8lFij";
+//Coordenadas para Aviator
 var centerCoords = [-2.416493, 36.888349];
 
-var initialZoom = 13;
+var initialZoom = 17;
 var map = tt.map({
     key: apiKey,
     container: "map",
