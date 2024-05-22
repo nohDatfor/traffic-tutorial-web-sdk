@@ -49,10 +49,6 @@
   text-shadow: 1px 1px 15px black;
 }
 
-#search-panel-container {
-  z-index: 1;
-}
-
 #show-help-button {
   background-color: #000;
   border-color: #7c7c7c;

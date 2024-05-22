@@ -2,7 +2,7 @@ var apiKey = "sG1AXGg2PrKb2ZQPkc16sPLAsSg8lFij";
 //Coordenadas para Aviator
 var centerCoords = [-2.416493, 36.888349];
 
-var initialZoom = 17;
+var initialZoom = 16;
 var map = tt.map({
     key: apiKey,
     container: "map",
@@ -10,7 +10,6 @@ var map = tt.map({
     zoom: initialZoom
 });
 
-var searchBoxInstance;
 var startCornerLngLat;
 var endCornerLngLat;
 var mousePressed;
@@ -43,11 +42,6 @@ var trafficFlowTilesTier = new tt.TrafficFlowTilesTier({
     refresh: refreshTimeInMillis
 });
 
-var commonSearchBoxOptions = {
-    key: apiKey,
-    center: map.getCenter()
-};
-
 function toggleTrafficFlowTilesTier() {
     if (trafficFlowTilesToggle.checked) {
         map.addTier(trafficFlowTilesTier);
@@ -76,26 +70,8 @@ function toggleTrafficIncidentsTier() {
     }
 }
 
-function updateSearchBoxOptions() {
-    var updatedOptions = Object.assign(commonSearchBoxOptions, {
-        center: map.getCenter()
-    });
-    searchBoxInstance.updateOptions({
-        minNumberOfCharacters: 0,
-        searchOptions: updatedOptions,
-        autocompleteOptions: updatedOptions
-    });
-}
-
-function onSearchBoxResult(result) {
-    map.flyTo({
-        center: result.data.result.position,
-        speed: 3
-    });
-}
-
 function enableBoundingBoxDraw() {
-    showInfoPopup("Click and drag to draw a bounding box");
+    showInfoPopup("Haga clic y arrastre para seleccionar una zona");
     drawBoundingBoxButtonPressed = true;
     removeBoundingBox();
     clearIncidentList();
@@ -194,7 +170,7 @@ function onMouseUp(eventDetails) {
             displayTrafficIncidents(getLngLatBoundsForIncidentDetailsCall(startCornerLngLat, endCornerLngLat));
             showTrafficIncidentsTier();
         } else {
-            showErrorPopup("Try to select bigger bounding box.");
+            showErrorPopup("Intente hacer una selección más grande.");
             hidePopup(popupHideDelayInMilis);
         }
     }
@@ -265,7 +241,7 @@ function displayTrafficIncidents(boundingBox) {
         .go()
         .then(function (results) {
             if (results.tm.poi.length === 0) {
-                showErrorPopup("There are no traffic incidents in this area.");
+                showErrorPopup("No hay incidentes de tráfico en esta zona.");
                 hidePopup(popupHideDelayInMilis);
             } else {
                 results.tm.poi.forEach(function (incident) {
@@ -305,19 +281,6 @@ function getButtonClusterContent(description, numberOfIncidents, delayMagnitude)
 }
 
 function initApplication() {
-    searchBoxInstance = new tt.plugins.SearchBox(tt.services, {
-        minNumberOfCharacters: 0,
-        labels: {
-            placeholder: "Search"
-        },
-        noResultsMessage: "No results found.",
-        searchOptions: commonSearchBoxOptions,
-        autocompleteOptions: commonSearchBoxOptions
-    });
-
-    searchBoxInstance.on("tomtom.searchbox.resultselected", onSearchBoxResult);
-
-    document.getElementById("search-panel").append(searchBoxInstance.getSearchBoxHTML());
     trafficFlowTilesToggle.addEventListener("change", toggleTrafficFlowTilesTier);
     document.getElementById("incidents-toggle").addEventListener("change", toggleTrafficIncidentsTier);
     document.getElementById("bounding-box-button").addEventListener("click", enableBoundingBoxDraw);
@@ -325,7 +288,6 @@ function initApplication() {
     map.on("mousedown", onMouseDown);
     map.on("mouseup", onMouseUp);
     map.on("mousemove", onMouseMove);
-    map.on("moveend", updateSearchBoxOptions);
 }
 
 initApplication();
