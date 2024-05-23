@@ -2,12 +2,16 @@ var apiKey = "sG1AXGg2PrKb2ZQPkc16sPLAsSg8lFij";
 //Coordenadas para Aviator
 var centerCoords = [-2.416493, 36.888349];
 
-var initialZoom = 16;
+var initialZoom = 17;
 var map = tt.map({
     key: apiKey,
     container: "map",
     center: centerCoords,
-    zoom: initialZoom
+    zoom: initialZoom,
+    //Parámetros para bloquear la ventana
+    minZoom: 16,
+    maxZoom: 18,
+    dragPan: true, //Deshabilita/Habilita el arrastre del mapa
 });
 
 var startCornerLngLat;
@@ -288,6 +292,13 @@ function initApplication() {
     map.on("mousedown", onMouseDown);
     map.on("mouseup", onMouseUp);
     map.on("mousemove", onMouseMove);
+    centerMap;
 }
+
+function centerMap() {
+    map.setCenter(centerCoords);
+}
+
+
 
 initApplication();

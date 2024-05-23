@@ -23,7 +23,9 @@
     href="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.57.0/maps/css-styles/routing.css" />
   <link rel="stylesheet" type="text/css"
     href="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.57.0/maps/css-styles/poi.css" />
-  <link rel="stylesheet" type="text/css" href="https://datfor.com/wp-content/uploads/2024/05/styles.css" />
+  <!--<link rel="stylesheet" type="text/css" href="https://datfor.com/wp-content/uploads/2024/05/styles.css" />-->
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  
 
 </head>
 
@@ -98,10 +100,10 @@
             </div>
             <div class="row py-2">
               <div class="pl-3 col-sm-10">
-                <span class="legend-font">0 - 0.01</span>
+                <span class="legend-font">0%</span>
               </div>
               <div class="col">
-                <span class="legend-font">1</span>
+                <span class="legend-font">100%</span>
               </div>
             </div>
             <div class="row">
@@ -111,16 +113,16 @@
                     <div class="row border py-2" style="background-color: #6e6e6e;"></div>
                   </div>
                   <div class="col ml-1">
-                    <div class="row border py-2" style="background-color: rgba(245, 8, 2, 0.5);"></div>
-                  </div>
-                  <div class="col ml-1">
                     <div class="row border py-2" style="background-color: #ff2323;"></div>
                   </div>
                   <div class="col ml-1">
-                    <div class="row border py-2" style="background-color: #fad900;"></div>
+                    <div class="row border py-2" style="background-color: #ff8b2c;"></div>
                   </div>
                   <div class="col ml-1">
-                    <div class="row border py-2" style="background-color: #ffff37;"></div>
+                    <div class="row border py-2" style="background-color: #ffcf32;"></div>
+                  </div>
+                  <div class="col ml-1">
+                    <div class="row border py-2" style="background-color: #fff537;"></div>
                   </div>
                   <div class="col ml-1">
                     <div class="row border py-2" style="background-color: #2bc82b;"></div>
@@ -131,7 +133,10 @@
           </div>
         </div>
       </div>
-      <div class="col" id="map"></div>
+        <div class="col" id="map">
+          <button id="centerButton" onclick="centerMap()">Centrar Mapa</button>
+        </div>
+      </div>
       <div id="popup-wrapper">
       </div>
     </div>
@@ -144,8 +149,8 @@
   <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.57.0/services/services-web.min.js"></script>
   <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/2.23.1/SearchBox-web.js"></script>
 
-  <script src="traffic_aviator.js"></script>
   <!--<script src="https://datfor.com/wp-content/uploads/2024/05/traffic_aviator.js"></script>-->
+  <script src="traffic_aviator.js"></script>
   
 </body>
 
