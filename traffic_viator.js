@@ -1,5 +1,5 @@
 var apiKey = "sG1AXGg2PrKb2ZQPkc16sPLAsSg8lFij";
-//Coordenadas para Aviator
+//Coordenadas para Viator
 var centerCoords = [-2.416493, 36.888349];
 
 var initialZoom = 17;
